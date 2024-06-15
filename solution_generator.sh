@@ -32,22 +32,24 @@ create_project() {
     cd "$project_path"
     dotnet new $project_type -n $project_name
     cd ..
-    dotnet sln add "$project_path/$project_name.csproj"
+    echo "estou no diretorio" 
+    pwd
+    dotnet sln add "$project_path$project_name/$project_name.csproj"
 }
 
 # 1. Driving/API
-create_project "$project_path/1. Driving/API" webapi service.$project_name.Driving.API
+create_project "$project_path/1. Driving/" webapi service.$project_name.Driving.API
 
 # 2. Core/Application
-create_project "$project_path/2. Core/Application" classlib service.$project_name.Core.Application
+create_project "$project_path/2. Core/" classlib service.$project_name.Core.Application
 
 # 2. Core/Domain
-create_project "$project_path/2. Core/Domain" classlib service.$project_name.Core.Domain
+create_project "$project_path/2. Core/" classlib service.$project_name.Core.Domain
 
 # 3. Driven/API
 create_project "$project_path/3. Driven/" classlib service.$project_name.Driven.Adapter.Data
 
 # 4. Tests/Unit
-create_project "$project_path/4. Tests/Unit" xunit service.$project_name.Tests
+create_project "$project_path/4. Tests/" xunit service.$project_name.Tests
 
 echo "Projetos criados e adicionados à solução $solution_name com sucesso."
